@@ -1,4 +1,6 @@
 package com.lemur.user.dto;
 
-public record RegisterDTO(String name, String email, String password) {
+import com.lemur.user.user.UserRole;
+
+public record RegisterDTO(String name, String email, String password, UserRole role) {
 }

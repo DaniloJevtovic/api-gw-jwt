@@ -41,9 +41,10 @@ public class UserService {
                 .name(registerDTO.name())
                 .email(registerDTO.email())
                 .password(passwordEncoder.encode(registerDTO.password()))
+                .role(registerDTO.role())
                 .build();
 
-        return newUser;
+        return userRepository.save(newUser);
     }
 
     public Boolean checkCredentials(LoginDTO loginDTO) {
