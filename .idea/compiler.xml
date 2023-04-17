@@ -2,11 +2,16 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="api-gw-jwt" />
+        <module name="api-gateway" />
+        <module name="service2" />
+        <module name="service1" />
+        <module name="user" />
+        <module name="eureka-server" />
       </profile>
     </annotationProcessing>
   </component>
