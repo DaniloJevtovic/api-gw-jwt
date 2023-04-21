@@ -24,31 +24,27 @@ public class AuthFilter implements GatewayFilter {
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
-        ServerHttpRequest request = (ServerHttpRequest) exchange.getRequest();
+        ServerHttpRequest request = exchange.getRequest();
+        ServerHttpResponse response = exchange.getResponse();
 
         final List<String> apiEndpoints = List.of("api/auth/register", "api/auth/login");
 
         Predicate<ServerHttpRequest> isApiSecured = r -> apiEndpoints.stream()
                 .noneMatch(uri -> r.getURI().getPath().contains(uri));
 
-        if (isApiSecured.test(request)) {
-            if (!request.getHeaders().containsKey("Authorization")) {
-                ServerHttpResponse response = exchange.getResponse();
-                response.setStatusCode(HttpStatus.UNAUTHORIZED);
-                return response.setComplete();
-            }
+        if (!request.getHeaders().containsKey("Authorization")) {
+            response.setStatusCode(HttpStatus.UNAUTHORIZED);
+            return response.setComplete();
+        }
 
+        if (isApiSecured.test(request)) {
             final String token = request.getHeaders().getOrEmpty("Authorization").get(0);
 
             try {
                 jwtUtil.validateToken(token);
-                // poziv ka user servisu za validaciju tokena
             } catch (Exception e) {
-                e.printStackTrace();
-
-                ServerHttpResponse response = exchange.getResponse();
-                response.setStatusCode(HttpStatus.BAD_REQUEST);
-
+                log.error(e.getMessage());
+                response.setStatusCode(HttpStatus.UNAUTHORIZED);
                 return response.setComplete();
             }
 
