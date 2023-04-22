@@ -35,8 +35,8 @@ public class AuthController {
         return new ResponseEntity<>("neispranvi kredencijali", HttpStatus.BAD_REQUEST);
     }
 
-    @PostMapping("/validateToken")
-    public Boolean validateToken(@RequestBody String token) {
+    @GetMapping("/validateToken/{token}")
+    public Boolean validateToken(@PathVariable String token) {
         log.info("validacija...");
         return jwtUtil.validateToken(token);
     }
