@@ -23,15 +23,18 @@ public class JwtUtil {
     @Value("secret")
     private String jwtSecret;
 
-    private int expiresIn = 1000 * 60 * 60; // 1h
+    private int expiresIn = 1000 * 60 * 1; // 1min
 
     public String generateToken(String email) {
         long nowMillis = System.currentTimeMillis();
         long expMillis = nowMillis + expiresIn;
         Date exp = new Date(expMillis);
 
+        String role = userService.getUserByEmail(email).getRole().toString();
+
         return Jwts.builder()
                 .setSubject(email)
+                .claim("role", role)
                 .setIssuedAt(new Date(nowMillis))
                 .setExpiration(exp)
                 .signWith(SignatureAlgorithm.HS512, jwtSecret)
