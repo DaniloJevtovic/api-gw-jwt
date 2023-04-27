@@ -20,15 +20,33 @@ public class Service3Controller {
         return "Hello admin!";
     }
 
+    // AMDIN
+    @GetMapping("/admin2")
+    public String adminService2() {
+        return "Admin service 2!";
+    }
+
     // MODERATOR
     @GetMapping("/moderator")
     public String moderatorService() {
-        return "Hello moderator!";
+        return "Moderator service 1";
+    }
+
+    // MODERATOR
+    @GetMapping("/moderator2")
+    public String moderatorService2() {
+        return "Moderator service 2!";
     }
 
     // USER
     @GetMapping("/user")
     public String userService() {
-        return "Hello user!";
+        return "User service!";
+    }
+
+    // USER
+    @GetMapping("/user2")
+    public String userService2() {
+        return "User service2!";
     }
 }

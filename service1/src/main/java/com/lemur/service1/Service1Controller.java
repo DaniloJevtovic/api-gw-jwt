@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("api/service1")
 public class Service1Controller {
 
+    // ADMIN, MODERATOR, USER
     @GetMapping
     public String helloService1() {
         return "Hello from service1!";
