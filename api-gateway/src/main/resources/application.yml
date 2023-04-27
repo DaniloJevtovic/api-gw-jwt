@@ -29,12 +29,75 @@ spring:
           filters:
             - name: RoleAuth
               args:
-                roles: [ ADMIN, MODERATOR ]
+                roles: [ ADMIN, MODERATOR, USER ]
 
-        - id: service2
+        - id: service2ALL
           uri: lb://SERVICE2
           predicates:
-            - Path=/api/service2/**
+            - Path=/api/service2
+          filters:
+            - name: RoleAuth
+              args:
+                roles: [ ADMIN, MODERATOR, USER ]
+
+        - id: service2Admin
+          uri: lb://SERVICE2
+          predicates:
+            - Path=/api/service2/admin
+          filters:
+            - name: RoleAuth
+              args:
+                roles: [ ADMIN ]
+
+        - id: service2Moderator
+          uri: lb://SERVICE2
+          predicates:
+            - Path=/api/service2/moderator
+          filters:
+            - name: RoleAuth
+              args:
+                roles: [ MODERATOR ]
+
+        - id: service2User
+          uri: lb://SERVICE2
+          predicates:
+            - Path=/api/service2/user
+          filters:
+            - name: RoleAuth
+              args:
+                roles: [ USER ]
+
+        - id: service3All
+          uri: lb://SERVICE3
+          predicates:
+            - Path=/api/service3
+          filters:
+            - name: RoleAuth
+              args:
+                roles: [ ADMIN, MODERATOR, USER ]
+
+        - id: service3Admin
+          uri: lb://SERVICE3
+          predicates:
+            - Path=/api/service3/admin
+          filters:
+            - name: RoleAuth
+              args:
+                roles: [ ADMIN ]
+
+        - id: service3Moderator
+          uri: lb://SERVICE3
+          predicates:
+            - Path=/api/service3/moderator
+          filters:
+            - name: RoleAuth
+              args:
+                roles: [ MODERATOR ]
+
+        - id: service3User
+          uri: lb://SERVICE3
+          predicates:
+            - Path=/api/service3/user
           filters:
             - name: RoleAuth
               args:
