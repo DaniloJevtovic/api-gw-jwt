@@ -4,7 +4,6 @@ import com.lemur.user.user.UserService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -14,7 +13,6 @@ import java.util.Date;
 
 @Component
 @Slf4j
-//@AllArgsConstructor
 public class JwtUtil {
 
     @Autowired
@@ -23,7 +21,7 @@ public class JwtUtil {
     @Value("secret")
     private String jwtSecret;
 
-    private int expiresIn = 1000 * 60 * 1; // 1min
+    private int expiresIn = 1000 * 60 * 3; // 3min
 
     public String generateToken(String email) {
         long nowMillis = System.currentTimeMillis();

@@ -17,7 +17,7 @@ public class Service3Controller {
     // AMDIN
     @GetMapping("/admin")
     public String adminService() {
-        return "Hello admin!";
+        return "Admin service 1!";
     }
 
     // AMDIN
@@ -41,12 +41,12 @@ public class Service3Controller {
     // USER
     @GetMapping("/user")
     public String userService() {
-        return "User service!";
+        return "User service 1!";
     }
 
     // USER
     @GetMapping("/user2")
     public String userService2() {
-        return "User service2!";
+        return "User service 2!";
     }
 }
