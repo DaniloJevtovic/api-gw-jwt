@@ -31,43 +31,52 @@ spring:
               args:
                 roles: [ ADMIN, MODERATOR, USER ]
 
-        - id: service2ALL
+        - id: service2-all
           uri: lb://SERVICE2
           predicates:
-            - Path=/api/service2
+            - Path=/api/service2/all/**
           filters:
             - name: RoleAuth
               args:
                 roles: [ ADMIN, MODERATOR, USER ]
 
-        - id: service2Admin
+        - id: service2-admin
           uri: lb://SERVICE2
           predicates:
-            - Path=/api/service2/admin
+            - Path=/api/service2/admin/**
           filters:
             - name: RoleAuth
               args:
                 roles: [ ADMIN ]
 
-        - id: service2Moderator
+        - id: service2-moderator
           uri: lb://SERVICE2
           predicates:
-            - Path=/api/service2/moderator
+            - Path=/api/service2/moderator/**
           filters:
             - name: RoleAuth
               args:
                 roles: [ MODERATOR ]
 
-        - id: service2User
+        - id: service2-admin-moderator
           uri: lb://SERVICE2
           predicates:
-            - Path=/api/service2/user
+            - Path=/api/service2/admin-moderator/**
+          filters:
+            - name: RoleAuth
+              args:
+                roles: [ ADMIN, MODERATOR ]
+
+        - id: service2-user
+          uri: lb://SERVICE2
+          predicates:
+            - Path=/api/service2/user/**
           filters:
             - name: RoleAuth
               args:
                 roles: [ USER ]
 
-        - id: service3All
+        - id: service3-all
           uri: lb://SERVICE3
           predicates:
             - Path=/api/service3
@@ -76,28 +85,28 @@ spring:
               args:
                 roles: [ ADMIN, MODERATOR, USER ]
 
-        - id: service3Admin
+        - id: service3-admin
           uri: lb://SERVICE3
           predicates:
-            - Path=/api/service3/admin
+            - Path=/api/service3/admin, /api/service3/admin2
           filters:
             - name: RoleAuth
               args:
                 roles: [ ADMIN ]
 
-        - id: service3Moderator
+        - id: service3-moderator
           uri: lb://SERVICE3
           predicates:
-            - Path=/api/service3/moderator
+            - Path=/api/service3/moderator, /api/service3/moderator2
           filters:
             - name: RoleAuth
               args:
                 roles: [ MODERATOR ]
 
-        - id: service3User
+        - id: service3-user
           uri: lb://SERVICE3
           predicates:
-            - Path=/api/service3/user
+            - Path=/api/service3/user, /api/service3/user2
           filters:
             - name: RoleAuth
               args:
