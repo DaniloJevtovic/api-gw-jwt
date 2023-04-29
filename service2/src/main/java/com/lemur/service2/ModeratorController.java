@@ -13,4 +13,10 @@ public class ModeratorController {
     public String moderatorService() {
         return "Moderator service";
     }
+
+    // MODERATOR
+    @GetMapping("service2")
+    public String moderatorService2() {
+        return "Moderator service 2";
+    }
 }

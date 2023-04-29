@@ -5,16 +5,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("api/service2")
-public class Service2Controller {
+@RequestMapping("api/service2/all")
+public class AllRolesController {
 
-    // ALL
+    // ALL ROLES
     @GetMapping
     public String helloService2() {
         return "Hello from service2!";
     }
 
-    @GetMapping("all2")
+    // ALL ROLES
+    @GetMapping("/all2")
     public String allService2() {
         return "Service2 all";
     }

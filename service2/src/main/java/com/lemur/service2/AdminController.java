@@ -14,6 +14,7 @@ public class AdminController {
         return "Admin service";
     }
 
+    // ADMIN
     @GetMapping("/service2")
     public String adminService2() {
         return "Admin service2";

@@ -13,4 +13,11 @@ public class UserController {
     public String userService() {
         return "User service";
     }
+
+    // USER
+    @GetMapping("/service2")
+    public String userService2() {
+        return "User service 2";
+    }
+
 }
