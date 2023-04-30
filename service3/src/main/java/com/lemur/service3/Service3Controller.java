@@ -49,4 +49,16 @@ public class Service3Controller {
     public String userService2() {
         return "User service 2!";
     }
+
+    // ADMIN, MODERATOR
+    @GetMapping("/admin-moderator")
+    public String adminModeratorService() {
+        return "Admin, moderator service!";
+    }
+
+    // ADMIN, MODERATOR
+    @GetMapping("/admin-moderator2")
+    public String adminModeratorService2() {
+        return "Admin, moderator service 2!";
+    }
 }

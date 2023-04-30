@@ -103,6 +103,15 @@ spring:
               args:
                 roles: [ MODERATOR ]
 
+        - id: service3-admin-moderator
+          uri: lb://SERVICE3
+          predicates:
+            - Path=/api/service3/admin-moderator, /api/service3/admin-moderator2
+          filters:
+            - name: RoleAuth
+              args:
+                roles: [ ADMIN, MODERATOR ]
+
         - id: service3-user
           uri: lb://SERVICE3
           predicates:
