@@ -22,6 +22,11 @@ spring:
               args:
                 roles: [ ADMIN ]
 
+        - id: service1-unauthorized
+          uri: lb://SERVICE1
+          predicates:
+            - Path=/api/unauthorized
+
         - id: service1
           uri: lb://SERVICE1
           predicates:
