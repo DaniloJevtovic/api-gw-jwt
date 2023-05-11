@@ -1,0 +1,15 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Service1" type="Application" factoryName="Application">
+    <option name="MAIN_CLASS_NAME" value="com.lemur.service1.Service1Application" />
+    <module name="service1" />
+    <extension name="coverage">
+      <pattern>
+        <option name="PATTERN" value="com.lemur.service1.*" />
+        <option name="ENABLED" value="true" />
+      </pattern>
+    </extension>
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

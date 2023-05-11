@@ -10,6 +10,7 @@
         <module name="api-gateway" />
         <module name="service2" />
         <module name="service1" />
+        <module name="service3" />
         <module name="user" />
         <module name="eureka-server" />
       </profile>
