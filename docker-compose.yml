@@ -1,11 +1,41 @@
 services:
+  postgres:
+    container_name: postgres
+    image: postgres:14.6
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: lemur
+      POSTGRES_PASSWORD: password
+      PGDATA: /data/postgres
+    volumes:
+      - postgres:/data/postgres
+    ports:
+      - "5433:5432"
+    networks:
+      - postgres
+
+  pgadmin:
+    container_name: pgadmin
+    image: dpage/pgadmin4
+    restart: unless-stopped
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin4@pgadmin.org}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin}
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+    volumes:
+      - pgadmin:/var/lib/pgadmin
+    ports:
+      - "5050:80"
+    networks:
+      - postgres
+
   mysql:
-    container_name: mysql-apigw-jwt
+    container_name: mysql
     image: mysql:5.7
     restart: unless-stopped
     environment:
-      MYSQL_DATABASE: auth
-      MYSQL_USER: user
+      MYSQL_DATABASE: user-auth
+      MYSQL_USER: root
       MYSQL_PASSWORD: password
       MYSQL_ROOT_PASSWORD: password
     ports:
@@ -16,7 +46,7 @@ services:
       - mysql
 
   eureka-server:
-    container_name: eureka-server-apigw-jwt
+    container_name: eureka-server
     image: eureka-server:latest
     ports:
       - "8761:8761"
@@ -25,9 +55,9 @@ services:
     networks:
       - spring
 
-  apigw:
-    container_name: apigw-jwt
-    image: apigw:latest
+  api-gateway:
+    container_name: api-gateway
+    image: api-gateway:latest
     ports:
       - "8080:8080"
     environment:
@@ -46,10 +76,12 @@ services:
       - SPRING_PROFILES_ACTIVE=docker
     networks:
       - spring
-      - mysql
+      - postgres
+      #- mysql
     depends_on:
       - eureka-server
-      - mysql
+      - postgres
+      #- mysql
 
   service1:
     container_name: service1
@@ -88,12 +120,20 @@ services:
       - eureka-server
 
 networks:
-  postgres:
-    driver: bridge
   spring:
+    driver: bridge
+  postgres:
     driver: bridge
   mysql:
     driver: bridge
 
 volumes:
   my-db:
+  postgres:
+  pgadmin:
+
+# docker compose up -d
+# docker compose start
+# docker compose stop
+# docker compose down
+# docker rmi eureka-server api-gateway user service1 service2 service3
