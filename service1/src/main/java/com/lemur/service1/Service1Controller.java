@@ -11,6 +11,11 @@ public class Service1Controller {
     // ADMIN, MODERATOR, USER
     @GetMapping
     public String helloService1() {
-        return "Hello from service1!";
+        return "Service1!";
+    }
+
+    @GetMapping("/all2")
+    public String helloService2() {
+        return "Service 2!";
     }
 }
